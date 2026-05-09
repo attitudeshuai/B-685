@@ -53,6 +53,18 @@ const routes = [
         name: 'Profile',
         component: () => import('@/views/Profile.vue'),
         meta: { title: '个人设置' }
+      },
+      {
+        path: 'attendance/check',
+        name: 'AttendanceCheck',
+        component: () => import('@/views/AttendanceCheck.vue'),
+        meta: { title: '考勤打卡' }
+      },
+      {
+        path: 'attendance/admin',
+        name: 'AttendanceAdmin',
+        component: () => import('@/views/AttendanceAdmin.vue'),
+        meta: { title: '考勤统计' }
       }
     ]
   }
