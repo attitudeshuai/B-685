@@ -51,6 +51,20 @@
             <span>角色管理</span>
           </el-menu-item>
         </el-sub-menu>
+        <el-sub-menu index="attendance">
+          <template #title>
+            <el-icon><Clock /></el-icon>
+            <span>考勤管理</span>
+          </template>
+          <el-menu-item index="/attendance/clock">
+            <el-icon><Check /></el-icon>
+            <span>考勤打卡</span>
+          </el-menu-item>
+          <el-menu-item index="/attendance/record">
+            <el-icon><DataLine /></el-icon>
+            <span>考勤汇总</span>
+          </el-menu-item>
+        </el-sub-menu>
       </el-menu>
     </el-aside>
 
@@ -104,7 +118,8 @@ import { useRoute, useRouter } from 'vue-router'
 import { ElMessageBox, ElMessage } from 'element-plus'
 import {
   OfficeBuilding, List, Share, Folder, Briefcase,
-  Setting, User, Key, Fold, Expand, UserFilled, ArrowDown, SwitchButton
+  Setting, User, Key, Fold, Expand, UserFilled, ArrowDown, SwitchButton,
+  Clock, Check, DataLine
 } from '@element-plus/icons-vue'
 import { useAuthStore } from '@/stores/auth'
 

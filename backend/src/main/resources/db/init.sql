@@ -14,6 +14,7 @@ USE unit_management;
 SET NAMES utf8mb4;
 
 -- 单位表
+DROP TABLE IF EXISTS attendance_record;
 DROP TABLE IF EXISTS sys_user_role;
 DROP TABLE IF EXISTS sys_user;
 DROP TABLE IF EXISTS sys_role;
@@ -117,6 +118,23 @@ CREATE TABLE sys_user_role (
     INDEX idx_ur_user_id (user_id),
     INDEX idx_ur_role_id (role_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户角色关联表';
+
+-- 考勤记录表
+CREATE TABLE attendance_record (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id BIGINT NOT NULL COMMENT '用户ID',
+    attendance_date DATE NOT NULL COMMENT '考勤日期',
+    clock_in_time DATETIME COMMENT '上班打卡时间',
+    clock_out_time DATETIME COMMENT '下班打卡时间',
+    clock_in_status VARCHAR(20) COMMENT '上班打卡状态(正常/迟到)',
+    clock_out_status VARCHAR(20) COMMENT '下班打卡状态(正常/早退)',
+    remark VARCHAR(500) COMMENT '备注',
+    create_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    UNIQUE INDEX idx_att_user_date (user_id, attendance_date),
+    INDEX idx_att_user_id (user_id),
+    INDEX idx_att_date (attendance_date)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='考勤记录表';
 
 -- 插入示例单位数据
 INSERT INTO unit (name, code, parent_id, address, phone, email, leader, sort_order, status) VALUES
