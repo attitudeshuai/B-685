@@ -14,6 +14,7 @@ USE unit_management;
 SET NAMES utf8mb4;
 
 -- 单位表
+DROP TABLE IF EXISTS attendance_record;
 DROP TABLE IF EXISTS sys_user_role;
 DROP TABLE IF EXISTS sys_user;
 DROP TABLE IF EXISTS sys_role;
@@ -162,3 +163,19 @@ INSERT INTO sys_user_role (user_id, role_id) VALUES
 (2, 2),
 (3, 2),
 (4, 3);
+
+-- 考勤记录表
+CREATE TABLE attendance_record (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id BIGINT NOT NULL COMMENT '用户ID',
+    check_in_time DATETIME COMMENT '上班打卡时间',
+    check_out_time DATETIME COMMENT '下班打卡时间',
+    record_date DATE NOT NULL COMMENT '考勤日期',
+    status INT DEFAULT 1 COMMENT '状态(1:正常,2:迟到,3:早退,4:缺勤)',
+    remark VARCHAR(500) COMMENT '备注',
+    create_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    INDEX idx_att_user_id (user_id),
+    INDEX idx_att_date (record_date),
+    UNIQUE KEY uk_att_user_date (user_id, record_date)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='考勤记录表';
