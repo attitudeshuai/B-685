@@ -1,0 +1,356 @@
+// 全局样式
+:root {
+  --primary-color: #409EFF;
+  --success-color: #67C23A;
+  --warning-color: #E6A23C;
+  --danger-color: #F56C6C;
+  --info-color: #909399;
+  --text-primary: #303133;
+  --text-regular: #606266;
+  --border-color: #DCDFE6;
+  --bg-color: #f5f7fa;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+  color: var(--text-primary);
+  background-color: var(--bg-color);
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+// ===== 滚动条样式优化 =====
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c0c4cc;
+  border-radius: 4px;
+  transition: background 0.3s;
+  
+  &:hover {
+    background: #909399;
+  }
+}
+
+// Firefox 滚动条
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c0c4cc #f1f1f1;
+}
+
+// ===== Element Plus 组件样式优化 =====
+
+// 卡片
+.el-card {
+  border-radius: 8px;
+}
+
+// 表格
+.el-table th.el-table__cell {
+  background-color: #f5f7fa !important;
+  font-weight: 600;
+}
+
+// 对话框
+.el-dialog {
+  border-radius: 12px;
+  
+  .el-dialog__body {
+    max-height: 60vh;
+    overflow-y: auto;
+    
+    // 对话框内滚动条
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: #dcdfe6;
+      border-radius: 3px;
+      
+      &:hover {
+        background: #c0c4cc;
+      }
+    }
+  }
+}
+
+// 消息框样式
+.el-message-box {
+  border-radius: 12px !important;
+  padding: 20px !important;
+  
+  .el-message-box__header {
+    padding-bottom: 15px;
+  }
+  
+  .el-message-box__title {
+    font-weight: 600;
+    font-size: 16px;
+  }
+  
+  .el-message-box__content {
+    padding: 15px 0;
+    font-size: 14px;
+    color: #606266;
+  }
+  
+  .el-message-box__btns {
+    padding-top: 15px;
+    
+    .el-button {
+      border-radius: 6px;
+      padding: 10px 20px;
+    }
+  }
+}
+
+// 标签
+.el-tag {
+  border-radius: 4px;
+}
+
+// ===== Select 组件样式优化 =====
+.el-select {
+  .el-select__wrapper {
+    padding-right: 35px !important;  // 增加右侧内边距，防止文字与箭头重叠
+  }
+  
+  .el-select__suffix {
+    right: 12px !important;  // 调整箭头位置
+  }
+  
+  .el-select__caret {
+    font-size: 14px;
+    color: #909399;
+    transition: transform 0.3s, color 0.3s;
+  }
+  
+  &:hover .el-select__caret {
+    color: #606266;
+  }
+}
+
+// Select 下拉面板
+.el-select__popper {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  
+  .el-select-dropdown__wrap {
+    max-height: 274px;
+    
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: #dcdfe6;
+      border-radius: 3px;
+      
+      &:hover {
+        background: #c0c4cc;
+      }
+    }
+  }
+  
+  .el-select-dropdown__item {
+    padding: 8px 15px;
+    border-radius: 4px;
+    margin: 2px 5px;
+    
+    &.is-selected,
+    &.selected {
+      font-weight: 500;
+    }
+  }
+}
+
+// 树形选择器
+.el-tree-select {
+  .el-select__wrapper {
+    padding-right: 35px !important;
+  }
+}
+
+// 树形选择器下拉面板 - 完全修复文字下沉问题
+.el-tree-select__popper,
+.el-select__popper.is-pure {
+  min-width: 220px !important;
+  
+  .el-tree {
+    padding: 8px;
+    min-width: 200px;
+    
+    .el-tree-node {
+      // 节点内容容器 - 强制垂直居中
+      .el-tree-node__content {
+        height: 36px !important;
+        min-height: 36px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 0 12px !important;
+        border-radius: 6px;
+        margin: 2px 0;
+        box-sizing: border-box !important;
+        
+        // 所有直接子元素都垂直居中
+        > * {
+          display: flex !important;
+          align-items: center !important;
+          flex-shrink: 0;
+        }
+        
+        &:hover {
+          background-color: #f5f7fa;
+        }
+      }
+      
+      // 展开/收起图标
+      .el-tree-node__expand-icon {
+        font-size: 14px !important;
+        width: 24px !important;
+        height: 24px !important;
+        line-height: 24px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        flex-shrink: 0 !important;
+        
+        &.is-leaf {
+          color: transparent;
+        }
+      }
+      
+      // 文字标签
+      .el-tree-node__label {
+        font-size: 14px !important;
+        line-height: 36px !important;
+        height: 36px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        flex: 1 !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        white-space: nowrap !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      
+      // 选中状态
+      &.is-current > .el-tree-node__content {
+        background-color: #ecf5ff;
+        color: #409eff;
+        font-weight: 500;
+      }
+    }
+  }
+  
+  // 滚动条
+  .el-scrollbar__wrap {
+    max-height: 320px !important;
+    overflow-x: hidden !important;
+  }
+  
+  .el-scrollbar__view {
+    min-width: max-content;
+  }
+}
+
+// 输入框
+.el-input {
+  .el-input__wrapper {
+    border-radius: 6px;
+    transition: box-shadow 0.3s, border-color 0.3s;
+  }
+}
+
+// 输入框数字
+.el-input-number {
+  .el-input__wrapper {
+    border-radius: 6px;
+  }
+}
+
+// 按钮
+.el-button {
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+// 分页器
+.el-pagination {
+  .el-pager li {
+    border-radius: 4px;
+    
+    &.is-active {
+      font-weight: 600;
+    }
+  }
+}
+
+// 抽屉
+.el-drawer {
+  .el-drawer__body {
+    overflow-y: auto;
+    
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: #dcdfe6;
+      border-radius: 3px;
+      
+      &:hover {
+        background: #c0c4cc;
+      }
+    }
+  }
+}
+
+// ===== 动画 =====
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
