@@ -49,6 +49,18 @@ const routes = [
         meta: { title: '角色管理' }
       },
       {
+        path: 'attendance/clock',
+        name: 'AttendanceClock',
+        component: () => import('@/views/AttendanceClock.vue'),
+        meta: { title: '考勤打卡' }
+      },
+      {
+        path: 'attendance/record',
+        name: 'AttendanceRecord',
+        component: () => import('@/views/AttendanceRecord.vue'),
+        meta: { title: '考勤汇总' }
+      },
+      {
         path: 'profile',
         name: 'Profile',
         component: () => import('@/views/Profile.vue'),
