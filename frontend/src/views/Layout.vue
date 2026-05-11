@@ -15,6 +15,14 @@
         active-text-color="#fff"
         class="sidebar-menu"
       >
+        <el-menu-item index="/attendance/check">
+          <el-icon><Clock /></el-icon>
+          <span>考勤打卡</span>
+        </el-menu-item>
+        <el-menu-item index="/attendance/admin">
+          <el-icon><DataAnalysis /></el-icon>
+          <span>考勤管理</span>
+        </el-menu-item>
         <el-sub-menu index="org">
           <template #title>
             <el-icon><OfficeBuilding /></el-icon>
@@ -104,7 +112,8 @@ import { useRoute, useRouter } from 'vue-router'
 import { ElMessageBox, ElMessage } from 'element-plus'
 import {
   OfficeBuilding, List, Share, Folder, Briefcase,
-  Setting, User, Key, Fold, Expand, UserFilled, ArrowDown, SwitchButton
+  Setting, User, Key, Fold, Expand, UserFilled, ArrowDown, SwitchButton,
+  Clock, DataAnalysis
 } from '@element-plus/icons-vue'
 import { useAuthStore } from '@/stores/auth'
 

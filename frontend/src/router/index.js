@@ -10,8 +10,20 @@ const routes = [
   {
     path: '/',
     component: () => import('@/views/Layout.vue'),
-    redirect: '/units',
+    redirect: '/attendance/check',
     children: [
+      {
+        path: 'attendance/check',
+        name: 'AttendanceCheck',
+        component: () => import('@/views/AttendanceCheck.vue'),
+        meta: { title: '考勤打卡' }
+      },
+      {
+        path: 'attendance/admin',
+        name: 'AttendanceAdmin',
+        component: () => import('@/views/AttendanceAdmin.vue'),
+        meta: { title: '考勤管理' }
+      },
       {
         path: 'units',
         name: 'UnitList',
